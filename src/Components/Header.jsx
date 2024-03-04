@@ -4,7 +4,7 @@ export default function Header() {
     return(
         <div className="bg-[#2b2c37] text-white p-4 pr-0 h-20 flex">
             {/*Logo container*/}
-            <div className=" flex min-w-64 justify-start items-center">
+            <div className="flex min-w-64 justify-start items-center">
                 <img className="p-2"src={logo}></img>
                 <p className="text-4xl font-semibold pl-2">kanban</p>
             </div>

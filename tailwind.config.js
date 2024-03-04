@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {},
+    letterSpacing: {
+      boardSpacing: '2px'
+    }
   },
   plugins: [],
 }
