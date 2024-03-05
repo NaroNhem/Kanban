@@ -2,7 +2,7 @@ import boardicon from "../assets/board-icon.svg"
 
 export default function Sidebar() {
     return(
-        <div className="flex bg-[#2b2c37] w-64 flex-grow pt-7 pr-5 flex-col">
+        <div className="flex bg-[#2b2c37] w-64 flex-grow pt-3 pr-5 flex-col">
             {/*All Boards*/}
             <div className="text-[#828fa3] text-xs font-bold p-5">
                 <h3 className="tracking-boardSpacing">ALL BOARDS <span>(1)</span></h3>
