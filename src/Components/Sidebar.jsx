@@ -5,7 +5,8 @@ import hide from "../assets/hide.svg"
 import unhide from "../assets/unhide.svg"
 import { useState } from "react"
 
-export default function Sidebar() {
+export default function Sidebar(props) {
+    const {showModal, setShowModal} = props
     const [hidden, setHidden] = useState(false);
     return(
         !hidden ? 
@@ -17,7 +18,7 @@ export default function Sidebar() {
                 {/*Boards List*/}
                 {/*Create New Board Button*/}
                 <div className="hover:bg-white hover:rounded-r-full hover:duration-300 rounded-r-lg cursor-pointer duration-500 transition transform ">
-                    <button className="flex text-[#635fc7] font-bold items-center w-full gap-4 h-12 pl-5">
+                    <button onClick={() => setShowModal(!showModal)} className="flex text-[#635fc7] font-bold items-center w-full gap-4 h-12 pl-5">
                         <img src={boardicon}></img>+ Create New Board
                     </button>
                 </div>
