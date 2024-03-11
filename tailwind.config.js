@@ -5,10 +5,14 @@ export default {
   "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
-    letterSpacing: {
-      boardSpacing: '2px'
-    }
+    extend: {
+      letterSpacing: {
+        boardSpacing: '2px'
+      },
+      width: {
+        modal: '480px'
+      },
+    },
   },
   plugins: [],
 }
