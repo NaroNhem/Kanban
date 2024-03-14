@@ -1,5 +1,17 @@
 import AddInput from "./AddInput"
+import { useState } from "react"
+
 export default function CreateBoard() {
+    const [inputComponent, setInputComponent] = useState([<AddInput key={"Component 1"}/>])
+    const [inputKey, setInputKey] = useState(1)
+    {/*Function to add component */}
+    const addColumnInput = () => {
+        const newText = `Component ${inputComponent.length + inputKey}`;
+        const newComponent = <AddInput key={newText} text={newText} inputComponent={inputComponent} setInputComponent={setInputComponent}/>
+        setInputComponent([...inputComponent, newComponent])
+        setInputKey(inputKey)
+    }
+    
     return (
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#2b2c37] h-fit w-modal z-0 rounded-md p-9 flex flex-col">
             <h2 className="text-white font-bold text-xl">
@@ -14,8 +26,9 @@ export default function CreateBoard() {
                 <p className="text-white font-bold text-sm mt-3 pt-3">
                     Board Columns
                 </p>
-                <AddInput />
-                <button className="bg-white text-[#635fc7] font-bold p-2 rounded-full border-white border-2 hover:border-[#635fc7]">
+                {inputComponent.map(inputComponent => inputComponent)}
+                
+                <button onClick={addColumnInput}className="bg-white text-[#635fc7] font-bold p-2 rounded-full border-white border-2 hover:border-[#635fc7]">
                     + Add New Column
                 </button>
                 <button className="bg-[#635fc7] text-white font-bold p-2 rounded-full border-[#635fc7] border-2 hover:border-white">
