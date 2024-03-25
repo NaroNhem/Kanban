@@ -6,14 +6,14 @@ import unhide from "../assets/unhide.svg"
 import { useState } from "react"
 
 export default function Sidebar(props) {
-    const {showModal, setShowModal} = props
+    const {showModal, setShowModal, boardList} = props
     const [hidden, setHidden] = useState(false);
     return(
         !hidden ? 
             <div className="hidden md:flex bg-[#2b2c37] min-w-64 flex-grow pt-3 pr-5 flex-col justify-between">
             <div>
                 <div className="text-[#828fa3] text-xs font-bold p-5">
-                    <h3 className="tracking-boardSpacing">ALL BOARDS <span>(1)</span></h3>
+                    <h3 className="tracking-boardSpacing">ALL BOARDS <span>({boardList.length})</span></h3>
                 </div>
                 {/*Boards List*/}
                 {/*Create New Board Button*/}
@@ -22,6 +22,8 @@ export default function Sidebar(props) {
                         <img src={boardicon}></img>+ Create New Board
                     </button>
                 </div>
+                {boardList.map(boardList => boardList) 
+                }
             </div>
             {/*All Boards*/}
             <div className="pb-4 gap-2">
