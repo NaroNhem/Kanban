@@ -2,7 +2,7 @@ import AddInput from "./AddInput"
 import { useState } from "react"
 
 export default function CreateBoard(props) {
-    const {showModal, setShowModal, setBoardName, onSubmitHandler} = props
+    const {showModal, setShowModal, setBoardName, onSubmitHandler, handleColumnChange, addColumn, setColumnName} = props
     const [inputComponent, setInputComponent] = useState([])
     const [componentCount, setComponentCount] = useState(0)
     
@@ -19,8 +19,9 @@ export default function CreateBoard(props) {
         const componentID = componentCount
         setInputComponent(prevInputComponent => [
             ...prevInputComponent,
-            <AddInput key={componentID} inputComponent={inputComponent} setInputComponent={setInputComponent} deleteColumnInput={deleteColumnInput}/>
+            <AddInput key={componentID} index={prevInputComponent.length} deleteColumnInput={deleteColumnInput} handleColumnChange={handleColumnChange} addColumn={addColumn}/>
         ])
+        setColumnName(prevNames => [...prevNames, ''])
         setComponentCount(prevCount => prevCount + 1)
     }
     
