@@ -2,7 +2,7 @@ import AddInput from "./AddInput"
 import { useState } from "react"
 
 export default function CreateBoard(props) {
-    const {showModal, setShowModal, setBoardName, onSubmitHandler, handleColumnChange, setColumnName, columnName} = props
+    const {showModal, setShowModal, setBoardName, onSubmitHandler, handleColumnChange, setColumnName,  addBoardData} = props
     const [inputComponent, setInputComponent] = useState([])
     const [componentCount, setComponentCount] = useState(0)
     

@@ -21,8 +21,8 @@ export default function App() {
       setBoardName(boardName)
       addBoard()
       setBoardName("")
-      // addBoardData(boardName)
       setShowModal(!showModal)
+      addBoardData(boardName)
     }else{
       alert("Please add a Board Name");
     }
@@ -40,21 +40,19 @@ export default function App() {
   }
 
   const addBoardData = (boardName) => {
-    const columnLists = columnName.map((values, index) => ({
-      id:index,
+    const columnLists = columnName.map((value, id) => ({
+      id:id,
       columnName: value,
     }))
     setBoardData(prevboardData => [
       ...prevboardData,{
         name: boardName,
-        id: index,
         columnData: {
           columnLists
         }
         
       }
     ])
-    setColumnList(columnDetails)
   }
 
   const addBoard = () => {
@@ -82,7 +80,7 @@ export default function App() {
         editModal = {editModal}
         boardList = {boardList}/>
       </div>
-      {showModal && <CreateBoard showModal= {showModal} setShowModal = {setShowModal} setBoardName={setBoardName} onSubmitHandler={onSubmitHandler} handleColumnChange={handleColumnChange} setColumnName={setColumnName} />}
+      {showModal && <CreateBoard showModal= {showModal} setShowModal = {setShowModal} setBoardName={setBoardName} onSubmitHandler={onSubmitHandler} handleColumnChange={handleColumnChange} setColumnName={setColumnName}  addBoardData={addBoardData}/>}
       {editModal && <EditBoardModal editModal = {editModal} setEditModal={setEditModal}/>}
     </div>
   )
