@@ -2,24 +2,27 @@ import AddInput from "./AddInput"
 import { useState } from "react"
 
 export default function CreateBoard(props) {
-    const {showModal, setShowModal, setBoardName, onSubmitHandler, handleColumnChange, addColumn, setColumnName} = props
+    const {showModal, setShowModal, setBoardName, onSubmitHandler, handleColumnChange, setColumnName, columnName} = props
     const [inputComponent, setInputComponent] = useState([])
     const [componentCount, setComponentCount] = useState(0)
     
     {/*Function to delete component */}
-    const deleteColumnInput = (index) => {
-        setInputComponent(prevInputComponent => { //Uses previous state of the InputComponent hook as a parameter to modify the hook while staying immutable
-            const updatedComponents = [...prevInputComponent];
-            updatedComponents.splice(index,1);
-            return updatedComponents
-        })
+    const deleteColumnInput = (id) => {
+        setInputComponent(prevInputComponent => (
+            prevInputComponent.filter(component => component.props.id !== id)
+        ));
+        setColumnName(prevColumnName => (
+            prevColumnName.filter(obj => obj.id !== id)
+        ));
     }
+    
+    
     {/*Function to add component */}
     const addColumnInput = () => {
         const componentID = componentCount
         setInputComponent(prevInputComponent => [
             ...prevInputComponent,
-            <AddInput key={componentID} index={prevInputComponent.length} deleteColumnInput={deleteColumnInput} handleColumnChange={handleColumnChange} addColumn={addColumn}/>
+            <AddInput key={componentID} id={componentID} index={prevInputComponent.length} deleteColumnInput={deleteColumnInput} handleColumnChange={handleColumnChange} value={componentID}/>
         ])
         setColumnName(prevNames => [...prevNames, ''])
         setComponentCount(prevCount => prevCount + 1)

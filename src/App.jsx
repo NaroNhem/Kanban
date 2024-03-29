@@ -14,13 +14,14 @@ export default function App() {
   const [boardList, setBoardList] = useState([])
   const [componentCount, setComponentCount] = useState(0)
   const [columnName, setColumnName] = useState([])
-  const [columnList, setColumnList] = useState([])
+  const [boardData, setBoardData] = useState([])
 
   const onSubmitHandler = (e) => {
     if (boardName != ""){
       setBoardName(boardName)
       addBoard()
       setBoardName("")
+      // addBoardData(boardName)
       setShowModal(!showModal)
     }else{
       alert("Please add a Board Name");
@@ -28,23 +29,32 @@ export default function App() {
     
     }
   
-  const handleColumnChange = (event, index) =>{
+  const handleColumnChange = (event, index, id) =>{
     const { value } = event.target;
     const updatedColumnNames = [...columnName]
-    updatedColumnNames[index] = value;
+    updatedColumnNames[index] = {
+      columnName: value,
+      id: id
+    }
     setColumnName(updatedColumnNames)
   }
 
-  const addColumn = (count) => {
-    setColumnList(prevColumnList => [
-      ...prevColumnList,{
-        name: columnName,
-        tasks: 0,
-        id: count,
+  const addBoardData = (boardName) => {
+    const columnLists = columnName.map((values, index) => ({
+      id:index,
+      columnName: value,
+    }))
+    setBoardData(prevboardData => [
+      ...prevboardData,{
+        name: boardName,
+        id: index,
+        columnData: {
+          columnLists
+        }
+        
       }
     ])
     setColumnList(columnDetails)
-    addColumn(componentCount)
   }
 
   const addBoard = () => {
@@ -72,7 +82,7 @@ export default function App() {
         editModal = {editModal}
         boardList = {boardList}/>
       </div>
-      {showModal && <CreateBoard showModal= {showModal} setShowModal = {setShowModal} setBoardName={setBoardName} onSubmitHandler={onSubmitHandler} handleColumnChange={handleColumnChange} addColumn={addColumn} setColumnName={setColumnName}/>}
+      {showModal && <CreateBoard showModal= {showModal} setShowModal = {setShowModal} setBoardName={setBoardName} onSubmitHandler={onSubmitHandler} handleColumnChange={handleColumnChange} setColumnName={setColumnName} />}
       {editModal && <EditBoardModal editModal = {editModal} setEditModal={setEditModal}/>}
     </div>
   )
